@@ -11,19 +11,24 @@ export type TTodo = {
 };
 
 type TAction = {
-  type: string;
+  type: "addTodo" | "taskComplete";
   payload: TTodo | string;
 };
 
 // initial state
 const initialState: TTodo[] = [];
 
+const typeConstant = {
+  ADD_TODO: "addTodo",
+  TASK_COMPLETE: "taskComplete",
+};
+
 // reducer function
 const reducer = (currentState: TTodo[], action: TAction) => {
   switch (action.type) {
-    case "addTodo":
+    case typeConstant.ADD_TODO:
       return [...currentState, action.payload];
-    case "taskComplete":
+    case typeConstant.TASK_COMPLETE:
       return currentState.map((item) =>
         item.id === action.payload
           ? { ...item, isComplited: !item.isComplited }

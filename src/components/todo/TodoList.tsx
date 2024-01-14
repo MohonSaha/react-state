@@ -8,7 +8,9 @@ const TodoList = () => {
     <div>
       {state.map((item: TTodo) => (
         <p
-          className="cursor-pointer"
+          className={`cursor-pointer ${
+            item.isComplited ? "line-through text-red-600" : ""
+          }`}
           onClick={() => dispatch({ type: "taskComplete", payload: item.id })}
         >
           {item.title}
